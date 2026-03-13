@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Мой учебный сайт</title>
+    <style>
+      :root {
+        --text: #1a1a1a;
+        --muted: rgba(0, 0, 0, 0.65);
+        --card: rgba(255, 255, 255, 0.82);
+        --card-strong: rgba(255, 255, 255, 0.9);
+        --stroke: rgba(0, 0, 0, 0.08);
+        --shadow: 0 16px 50px rgba(0, 0, 0, 0.14);
+        --radius: 18px;
+        --radius-sm: 14px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--text);
+        background: #fff;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .wrap {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 28px 18px;
+      }
+
+      header.site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.75);
+        border-bottom: 1px solid var(--stroke);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 18px;
+        align-items: center;
+      }
+
+      .hero h1 {
+        margin: 0;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        font-size: clamp(28px, 2.8vw, 42px);
+        line-height: 1.05;
+      }
+
+      .hero p {
+        margin: 10px 0 0 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .badge {
+        justify-self: end;
+        padding: 12px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--stroke);
+        background: rgba(255, 255, 255, 0.85);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+        font-size: 13px;
+        color: var(--muted);
+        white-space: nowrap;
+      }
+
+      .section {
+        padding: 26px 0 34px 0;
+      }
+
+      .section .wrap {
+        padding-top: 22px;
+        padding-bottom: 22px;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin: 0 0 14px 0;
+      }
+
+      .section-title h2 {
+        margin: 0;
+        font-size: 20px;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .section-title .hint {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 13px;
+        opacity: 0.95;
+      }
+
+      .cards-3 {
+        display: grid;
+        gap: 16px;
+      }
+
+      .appear > .big-card {
+        opacity: 0;
+        transform: translateY(14px);
+        animation: pop-in 700ms ease forwards;
+      }
+      .appear > .big-card:nth-child(1) {
+        animation-delay: 80ms;
+      }
+      .appear > .big-card:nth-child(2) {
+        animation-delay: 180ms;
+      }
+      .appear > .big-card:nth-child(3) {
+        animation-delay: 280ms;
+      }
+
+      @keyframes pop-in {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .big-card {
+        border-radius: var(--radius);
+        background: var(--card);
+        border: 1px solid var(--stroke);
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+
+      .big-top {
+        display: grid;
+        gap: 12px;
+        padding: 16px;
+      }
+
+      .big-top .meta {
+        display: grid;
+        gap: 6px;
+      }
+
+      .big-top h3 {
+        margin: 0;
+        font-size: 16px;
+        letter-spacing: 0.02em;
+      }
+
+      .big-top p {
+        margin: 0;
+        color: rgba(0, 0, 0, 0.7);
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .big-image {
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        background: rgba(255, 255, 255, 0.7);
+      }
+
+      .big-image img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .mini-grid {
+        display: grid;
+        gap: 12px;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.35);
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+      }
+
+      .mini {
+        display: grid;
+        grid-template-columns: 88px 1fr;
+        gap: 10px;
+        align-items: center;
+        padding: 12px;
+        border-radius: var(--radius-sm);
+        background: rgba(255, 255, 255, 0.86);
+        border: 1px solid rgba(0, 0, 0, 0.07);
+      }
+
+      .mini img {
+        width: 88px;
+        height: 64px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 0, 0, 0.07);
+      }
+
+      .mini .t {
+        display: grid;
+        gap: 4px;
+      }
+
+      .mini .t strong {
+        font-size: 13px;
+      }
+
+      .mini .t span {
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.65);
+        line-height: 1.25;
+      }
+
+      /* ---------- SECTION 1 (нежно-розовая) ---------- */
+      .s1 {
+        background: linear-gradient(180deg, #ffd7e4 0%, #ffeaf1 45%, #fff 100%);
+      }
+      .s1 .cards-3 {
+        grid-template-columns: 1.35fr 0.85fr;
+        grid-template-areas:
+          "a b"
+          "a c";
+      }
+      .s1 .big-card:nth-child(1) {
+        grid-area: a;
+      }
+      .s1 .big-card:nth-child(2) {
+        grid-area: b;
+      }
+      .s1 .big-card:nth-child(3) {
+        grid-area: c;
+      }
+
+      .s1 .big-top {
+        grid-template-columns: 1fr 0.9fr;
+        align-items: center;
+      }
+      .s1 .mini-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .s1 .mini {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .s1 .mini img {
+        width: 100%;
+        height: 84px;
+        justify-self: center;
+      }
+      .s1 .mini:nth-child(1) {
+        background: rgba(255, 240, 246, 0.95);
+      }
+      .s1 .mini:nth-child(2) {
+        background: rgba(255, 255, 255, 0.9);
+      }
+      .s1 .mini:nth-child(3) {
+        background: rgba(255, 230, 240, 0.95);
+      }
+      .s1 .mini:nth-child(4) {
+        background: rgba(255, 248, 252, 0.95);
+      }
+
+      /* ---------- SECTION 2 (тёмно-розовая) ---------- */
+      .s2 {
+        background: radial-gradient(1200px 600px at 30% 0%, #ff7fb3 0%, #ff4f96 35%, #ff2b7d 62%, #ffffff 140%);
+      }
+      .s2 .section-title .hint {
+        color: rgba(255, 255, 255, 0.92);
+      }
+      .s2 .cards-3 {
+        grid-template-columns: 0.95fr 1.05fr 0.85fr;
+        align-items: start;
+      }
+      .s2 .big-card:nth-child(1) {
+        transform: rotate(-0.5deg);
+      }
+      .s2 .big-card:nth-child(2) {
+        transform: translateY(10px);
+      }
+      .s2 .big-card:nth-child(3) {
+        transform: rotate(0.6deg);
+      }
+      .s2 .big-top {
+        grid-template-columns: 1fr;
+      }
+      .s2 .mini-grid {
+        grid-template-columns: 1fr;
+      }
+      .s2 .mini {
+        grid-template-columns: 70px 1fr;
+      }
+      .s2 .mini:nth-child(odd) {
+        justify-self: end;
+        width: 92%;
+      }
+      .s2 .mini:nth-child(even) {
+        justify-self: start;
+        width: 88%;
+      }
+      .s2 .mini img {
+        width: 70px;
+        height: 70px;
+        border-radius: 999px;
+      }
+      .s2 .mini:nth-child(1) {
+        background: rgba(255, 255, 255, 0.92);
+      }
+      .s2 .mini:nth-child(2) {
+        background: rgba(255, 238, 245, 0.92);
+      }
+      .s2 .mini:nth-child(3) {
+        background: rgba(255, 250, 252, 0.92);
+      }
+      .s2 .mini:nth-child(4) {
+        background: rgba(255, 230, 240, 0.92);
+      }
+
+      /* ---------- SECTION 3 (красная) ---------- */
+      .s3 {
+        background: linear-gradient(180deg, #ff3b3b 0%, #d3112a 55%, #ffffff 145%);
+      }
+      .s3 .cards-3 {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+          "a b"
+          "c b";
+      }
+      .s3 .big-card:nth-child(1) {
+        grid-area: a;
+      }
+      .s3 .big-card:nth-child(2) {
+        grid-area: b;
+      }
+      .s3 .big-card:nth-child(3) {
+        grid-area: c;
+      }
+      .s3 .big-card:nth-child(2) .big-top {
+        grid-template-columns: 0.95fr 1.05fr;
+      }
+      .s3 .big-card:nth-child(1) .big-top,
+      .s3 .big-card:nth-child(3) .big-top {
+        grid-template-columns: 1fr;
+      }
+      .s3 .mini-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+      .s3 .mini {
+        grid-template-columns: 1fr;
+        padding: 10px;
+      }
+      .s3 .mini img {
+        width: 100%;
+        height: 72px;
+      }
+      .s3 .mini:nth-child(1) {
+        transform: translateY(-6px);
+        background: rgba(255, 255, 255, 0.92);
+      }
+      .s3 .mini:nth-child(2) {
+        transform: translateY(6px);
+        background: rgba(255, 235, 238, 0.92);
+      }
+      .s3 .mini:nth-child(3) {
+        transform: translateY(-4px);
+        background: rgba(255, 248, 250, 0.92);
+      }
+      .s3 .mini:nth-child(4) {
+        transform: translateY(8px);
+        background: rgba(255, 220, 226, 0.92);
+      }
+
+      /* ---------- SECTION 4 (бордовая) ---------- */
+      .s4 {
+        background: radial-gradient(900px 500px at 70% 0%, #7a0028 0%, #4c001a 55%, #ffffff 170%);
+      }
+      .s4 .cards-3 {
+        grid-template-columns: 0.9fr 1.2fr;
+        grid-template-areas:
+          "b a"
+          "c a";
+      }
+      .s4 .big-card:nth-child(1) {
+        grid-area: a;
+      }
+      .s4 .big-card:nth-child(2) {
+        grid-area: b;
+      }
+      .s4 .big-card:nth-child(3) {
+        grid-area: c;
+      }
+      .s4 .big-top {
+        grid-template-columns: 0.95fr 1.05fr;
+      }
+      .s4 .big-card:nth-child(2) .big-top,
+      .s4 .big-card:nth-child(3) .big-top {
+        grid-template-columns: 1fr;
+      }
+      .s4 .mini-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+          "m1 m2"
+          "m3 m2"
+          "m3 m4";
+      }
+      .s4 .mini:nth-child(1) {
+        grid-area: m1;
+        justify-self: start;
+        width: 96%;
+        background: rgba(255, 245, 248, 0.92);
+      }
+      .s4 .mini:nth-child(2) {
+        grid-area: m2;
+        align-self: stretch;
+        background: rgba(255, 255, 255, 0.92);
+      }
+      .s4 .mini:nth-child(3) {
+        grid-area: m3;
+        align-self: stretch;
+        background: rgba(255, 230, 236, 0.92);
+      }
+      .s4 .mini:nth-child(4) {
+        grid-area: m4;
+        justify-self: end;
+        width: 92%;
+        background: rgba(255, 240, 244, 0.92);
+      }
+      .s4 .mini img {
+        border-radius: 12px;
+      }
+
+      /* ---------- FOOTER ---------- */
+      footer.site-footer {
+        background: #0f0f12;
+        color: rgba(255, 255, 255, 0.9);
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 16px;
+        align-items: center;
+      }
+      .footer-grid h3 {
+        margin: 0 0 6px 0;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        font-size: 14px;
+      }
+      .footer-grid p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.72);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+      .footer-mark {
+        padding: 12px 14px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.06);
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      /* ---------- RESPONSIVE ---------- */
+      @media (max-width: 980px) {
+        .hero {
+          grid-template-columns: 1fr;
+        }
+        .badge {
+          justify-self: start;
+        }
+        .s1 .cards-3,
+        .s2 .cards-3,
+        .s3 .cards-3,
+        .s4 .cards-3 {
+          grid-template-columns: 1fr;
+          grid-template-areas: none;
+        }
+        .s3 .mini-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap hero">
+        <div>
+          <h1>Мой учебный сайт</h1>
+          <p>Пример страницы на чистом HTML.</p>
+        </div>
+        <div class="badge">HTML • Header • 4 секции • 3 Карточки • Footer</div>
+      </div>
+    </header>
+
+    <main>
+      <!-- SECTION 1 -->
+      <section class="section s1" aria-label="Секция 1">
+        <div class="wrap">
+          <div class="section-title">
+            <h2>Секция 1</h2>
+          </div>
+
+          <div class="cards-3 appear">
+            <article class="big-card">
+              <div class="big-top">
+                <div class="meta">
+                  <h3>Пионы</h3>
+                  <p>Пион известен как «король цветов». Олицетворяет богатство, величие и процветание. В древние времена цветок выращивали в императорских садах и считали признаком высшего статуса.</p>
+                </div>
+                <figure class="big-image">
+                  <img src="https://i.pinimg.com/736x/b8/ad/1d/b8ad1d4d898ca521351ffddd2b45f885.jpg" alt="Заглушка изображения: секция 1, карточка A" />
+                </figure>
+              </div>
+
+              <div class="mini-grid">
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2022/05/alerti.jpg" alt="Мини‑картинка A1" />
+                  <div class="t">
+                    <strong>Алерти</strong>
+                    <span>Одним из самых красивых многолетних растений, которое можно встретить практически на каждом участке, считается пион Алерти. Он не только шикарно смотрится в ландшафтном дизайне, но и характеризуется неприхотливостью в уходе.</span>
+                  </div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/04/bessi.jpg" alt="Мини‑картинка A2" />
+                  <div class="t">
+                    <strong>Бесси</strong>
+                    <span>Выращивание пионов Бесси – это несложный процесс, который может принести много радости любителям красивых цветов. Этот сорт является одним из самых интересных и эффектных для использования в бордюрах или клумбах.</span>
+                  </div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2022/05/armani.jpg" alt="Мини‑картинка A3" />
+                  <div class="t">
+                    <strong>Армани</strong>
+                    <span>«Армани» справедливо считается одним из самых роскошных сортов, относящихся к травянистому виду пионов. Пышные бутоны с махровыми шелковистыми лепестками окружены густой темно-зеленой листвой. </span>
+                  </div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2022/03/balerina.jpg" alt="Мини‑картинка A4" />
+                  <div class="t">
+                    <strong>Балерина</strong>
+                    <span>Пион Балерина – достаточно старый ито-гибрид, который характеризуется пышным белоснежным цветением с ярко выраженным ароматом.</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="big-card">
+              <div class="big-top">
+                <div class="meta">
+                  <h3>Лилии</h3>
+                  <p>Изящный цветок, обладающий элегантной красотой и утончённой формой. Её величественные цветки и изящные листья делают её непревзойдённым украшением любого сада или букета.</p>
+                </div>
+                <figure class="big-image">
+                  <img src="https://i.pinimg.com/originals/b7/c9/f7/b7c9f79c9d114695d5244111d9864bcc.jpg" alt="Заглушка изображения: секция 1, карточка B" />
+                </figure>
+              </div>
+              <div class="mini-grid">
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/02/aventino.jpg" alt="Мини‑картинка B1" />
+                  <div class="t"><strong>Авентино</strong><span>Лилия Авентино – это ОТ-гибрид, который появился при скрещивании восточной и трубчатой лилий. Этот сорт известен своей красивой окраской цветков и приятным ароматом. Высота растения может достигать до 130 см, а диаметр цветка – до 25 см.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/05/alma-ata-3.jpg" alt="Мини‑картинка B2" />
+                  <div class="t"><strong>Алма-Ата</strong><span>Лилия Алма-Ата, также известная как Alma Ata, относится к восточным гибридам. Сорт является одним из самых популярных благодаря своей красивой белоснежной окраске цветков и насыщенному аромату.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2021/12/arena.jpg" alt="Мини‑картинка B3" />
+                  <div class="t"><strong>Арена</strong><span>Лилия Арена является весьма популярным сортом. Цветы подходят как для групповых, так и для одиночных посадок с целью последующей срезки. Чтобы декоративное растение имело привлекательный внешний вид, а цветение было обильным, необходимо осуществлять правильный и своевременный уход, который подходит именно для этого сорта..</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2021/11/beverli-drim.jpg" alt="Мини‑картинка B4" />
+                  <div class="t"><strong>Беверли Дрим</strong><span>Лилии Беверли Дрим не отличаются особой сложностью при выращивании. Однако именно поэтому весьма обидно было бы для садоводов упустить тонкости культивации и совершить фатальные ошибки. Вывод прост: нужно внимательным образом изучить все характеристики растения и понять, как добиться результата.</span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="big-card">
+              <div class="big-top">
+                <div class="meta">
+                  <h3>Гипсофилы</h3>
+                  <p>Издревле считается символом целомудрия, невинности и духовной чистоты. Лёгкие, воздушные соцветия напоминают о хрупкости и нежности девичьей души. </p>
+                </div>
+                <figure class="big-image">
+                  <img src="https://i.pinimg.com/736x/3c/04/c8/3c04c8767f6bdf4e509b3623a2cb95bd.jpg" alt="Заглушка изображения: секция 1, карточка C" />
+                </figure>
+              </div>
+              <div class="mini-grid">
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2025/05/rozovaya-dymka.jpg" alt="Мини‑картинка C1" />
+                  <div class="t"><strong>Розовая дымка</strong><span>Гипсофила Розовая дымка относится к метельчатым видам и представляет собой многолетнее растение, которое привлекает внимание своей изящной формой и нежными цветами. Это среднерослое растение достигает высоты около 50 см, что делает его идеальным для создания красивых композиций в саду. </span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2025/05/tihookeanskaya-rozovaya.jpg" alt="Мини‑картинка C2" />
+                  <div class="t"><strong>Тихоокеанская</strong><span>Гипсофила тихоокеанская розовая, также известная под синонимом Gypsophila pacifica, представляет собой многолетнее травянистое растение, которое привлекает внимание садоводов и любителей цветов благодаря своей красоте и неприхотливости. </span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2025/05/panikulyata-rouz.jpg" alt="Мини‑картинка C3" />
+                  <div class="t"><strong>Паникулята Роуз</strong><span>Гипсофила Паникулята Роуз, также известная как Paniculata Rose, представляет собой многолетнее растение из семейства гвоздичных. Этот вид метельчатой гипсофилы отличается сильной ветвистостью, особенно в верхней части куста, что придает ему объемный и привлекательный вид.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2025/05/flamingo.jpg" alt="Мини‑картинка C4" />
+                  <div class="t"><strong>Фламинго</strong><span>Гипсофила Фламинго относится к виду метельчатая и представляет собой многолетнее растение, которое отличается своей привлекательной формой и изящными цветами.</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2 -->
+      <section class="section s2" aria-label="Секция 2">
+        <div class="wrap">
+          <div class="section-title">
+            <h2>Секция 2</h2>
+          </div>
+
+          <div class="cards-3 appear">
+            <article class="big-card">
+              <div class="big-top">
+                <div class="meta">
+                  <h3>Тульпаны</h3>
+                  <p>Удивительный цветок, в свое время побывавший валютой и становившийся причиной множества интриг, считается у садоводов одним из самых красивых. </p>
+                </div>
+                <figure class="big-image">
+                  <img src="https://i.pinimg.com/736x/ce/f3/d5/cef3d5ebe75f01b7793fad75709ef346.jpg" alt="Тульпаны"/>
+                </figure>
+              </div>
+              <div class="mini-grid">
+                <div class="mini">
+                  <img src="https://i.pinimg.com/736x/a2/d3/70/a2d37017a3b12d05224e1d2c8fa098c6.jpg" alt="Мини‑картинка A1" />
+                  <div class="t"><strong>Белый принц</strong><span>Входит в список лучших сортов тюльпанов. Ценится за нежность лепестков и прекрасную сочетаемость с другими видами в букетах. Он буквально светится фарфоровым оттенком, создавая ощущение сказочности. При этом неприхотлив, быстро акклиматизируется, подкормки проводятся по общему графику.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://i.pinimg.com/1200x/e1/ec/b5/e1ecb587ae62e142cb9eb554460f8dfc.jpg" alt="Мини‑картинка A2" />
+                  <div class="t"><strong>Джоинт Дивижн (Joint Division)</strong><span>Районирован для центральных районов, хорошо переносит перепады температур. Высаживают луковицы во второй половине сентября. По лепесткам проходит контрастная горизонтальная полоса, что очень необычно смотрится.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://цветочныйрай.рф/upload/medialibrary/405/405ad0607cdce00ab5fe006199ceff0b.jpg" alt="Мини‑картинка A3" />
+                  <div class="t"><strong>Инсулинде (Insulinde)</strong><span>Пестрота бутона создается мелкими полосочками фиолетового и белого. Они прихотливой формы и сразу сложно определить, какой цвет ведущий.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://цветочныйрай.рф/upload/medialibrary/ccf/ccfb39080428ad84647fef5bf1fc70d5.jpg" alt="Мини‑картинка A4" />
+                  <div class="t"><strong>Хартс Дилайт (Heart s Delight)</strong><span>Интересное сочетание короткого стебля с относительно крупным цветком сделало вид одним из любимых у мастеров ландшафтного дизайна.</span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="big-card">
+              <div class="big-top">
+                <div class="meta">
+                  <h3>Гладиолусы</h3>
+                  <p>  Многолетнее травянистое растение семейства Ирисовых, которое характеризуется изысканными цветками, собранными в соцветия на верхушке стебля.ноголетнее травянистое растение семейства Ирисовых, которое характеризуется изысканными цветками, собранными в соцветия на верхушке стебля..</p>
+                </div>
+                <figure class="big-image">
+                  <img src="https://i.pinimg.com/736x/3c/fe/3e/3cfe3e4c72800d7d376c0c04babf906e.jpg" alt="Заглушка изображения: секция 2, карточка B" />
+                </figure>
+              </div>
+              <div class="mini-grid">
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/06/adrenalin.jpg" alt="Мини‑картинка B1" />
+                  <div class="t"><strong>Адреналин</strong><span>Гладиолус Адреналин, также известный как Adrenaline, является одним из самых популярных и красивых сортов. Это высокое растение, достигающее высоты 100-110 см. Листья мечевидные и темно-зеленые. Соцветия длиной от 40 до 50 см состоят из крупных воронковидных цветков диаметром от 12 до 15 см.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/06/alabama.jpg" alt="Мини‑картинка B2" />
+                  <div class="t"><strong>Алабама</strong><span>Гладиолус Алабама – это один из самых ярких и крупноцветковых сортов гладиолусов. Он отличается высокой стеблевой частью, которая может достигать 110 см в высоту. Кусты этого растения имеют массивную форму и прямое направление роста. Листья мечевидной формы обвиваются вокруг цветоноса по всей длине.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/06/debyussi.jpg" alt="Мини‑картинка B3" />
+                  <div class="t"><strong>Дебюсси</strong><span>Гладиолус Дебюсси, также известный как Debussy, – это высокое растение с крупными воронковидными цветками ярко-красного или карминового цвета с кремово-желтым центром.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/06/blyu-berd.jpg" alt="Мини‑картинка B4" />
+                  <div class="t"><strong>Блю Берд</strong><span>Гладиолус Блю Берд – это отличный выбор для тех, кто любит яркие оттенки и желает создавать красивые композиции из разных видов декоративной растительности. Следуя простым правилам посадки и ухода за растением, вы получите отличный результат – яркий цветок, который будет радовать своей красотой каждый год.</span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="big-card">
+              <div class="big-top">
+                <div class="meta">
+                  <h3>Гвоздики</h3>
+                  <p>Гвоздика символизирует любовь, уважение, верность, мужество, победу и благодарность.</p>
+                </div>
+                <figure class="big-image">
+                  <img src="https://i.pinimg.com/736x/32/2d/8c/322d8c29596d23ea9748a0469ccf9260.jpg" alt="Заглушка изображения: секция 2, карточка C" />
+                </figure>
+              </div>
+              <div class="mini-grid">
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/06/kapitan-kalizo-2.jpg" alt="Мини‑картинка C1" />
+                  <div class="t"><strong>Капитан Кализо</strong><span>Гвоздика Капитан Кализо является прекрасным контрастным растением, которое подходит для различных условий выращивания и не требует сложного ухода</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/06/doris.jpg" alt="Мини‑картинка C2" />
+                  <div class="t"><strong>Дорис</strong><span>Гвоздика Дорис – это неприхотливое растение, которое может стать отличным выбором для создания красивых цветников. Компактный вид и яркий аромат делают её особенно привлекательной для использования в букетах. </span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/06/pich-pati.jpg" alt="Мини‑картинка C3" />
+                  <div class="t"><strong>Пич Патти</strong><span>Гвоздика Пич Пати, также известная как Peach Party, является многолетним растением вида китайская. Это нежное компактное растение является почвопокровником и имеет прямостоячие стебли. </span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/06/sadovaya-gollandskaya-caryophyllus-1.jpg" alt="Мини‑картинка C4" />
+                  <div class="t"><strong>Садовая</strong><span>Гвоздика садовая – это многолетнее растение, обладающее высокими декоративными качествами. Его используют как для создания букетов, так и для оформления садовых участков. Цветок с выраженным ароматом отлично соседствует с другими растениями, благодаря чему часто используется в ландшафтном дизайне. </span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3 -->
+      <section class="section s3" aria-label="Секция 3">
+        <div class="wrap">
+          <div class="section-title">
+            <h2>Секция 3</h2>
+          </div>
+
+          <div class="cards-3 appear">
+            <article class="big-card">
+              <div class="big-top">
+                <div class="meta">
+                  <h3>Розы</h3>
+                  <p>Символ любви, красоты, страсти, уважения и благодарности..</p>
+                </div>
+                <figure class="big-image">
+                  <img src="https://i.pinimg.com/1200x/1b/0a/a2/1b0aa28ad8d822b8ee1d6f4b598c7275.jpg" alt="Заглушка изображения: секция 3, карточка A" />
+                </figure>
+              </div>
+              <div class="mini-grid">
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/12/alinka.jpg" alt="Мини‑картинка A1" />
+                  <div class="t"><strong>Алинка</strong><span>Роза Алинка, также известная под синонимом Alinka, является одной из самых популярных. Этот чайно-гибридный сорт был выведен в 1971 году в Англии и с тех пор завоевал сердца многих цветоводов своей неповторимой красотой и ароматом.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/06/admiral-2.jpg" alt="Мини‑картинка A2" />
+                  <div class="t"><strong>Адмирал</strong><span>Роскошная чайно-гибридная роза серии Nostalgie под названием Адмирал (Admiral) с первого взгляда привлекает к себе внимание насыщенностью окраски, размерами и слегка старомодной формой бутона. </span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2021/09/akva.jpg" alt="Мини‑картинка A3" />
+                  <div class="t"><strong>Аква</strong><span>Роза голландской селекции с названием Аква (Aqua) входит в группу сортов Florists Rose, высоко оценивается профессиональными флористами за долгое сохранение декоративности при составлении букетов.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/03/amanda-blyu.jpg" alt="Мини‑картинка A4" />
+                  <div class="t"><strong>Аманда Блю</strong><span>Роза Аманда Блю (Amanda Blue) – это чайно-гибридный сорт, выведенный в Германии. Он также известен под синонимом Amanda Blue. Это кустарниковая роза, которая может достигать высоты от 100 до 130 см и ширины от 70 до 80 см. </span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="big-card">
+              <div class="big-top">
+                <div class="meta">
+                  <h3>Ранункулюс</h3>
+                  <p>В переводе означает «маленькая лягушка». Это связано с естественной средой обитания диких видов — влажными, болотистыми местами, где часто встречаются лягушки.</p>
+                </div>
+                <figure class="big-image">
+                  <img src="https://i.pinimg.com/736x/47/3e/ad/473ead9a9f5dbaac6ea7e56bc6e6a5ba.jpg" alt="Заглушка изображения: секция 3, карточка B" />
+                </figure>
+              </div>
+              <div class="mini-grid">
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2025/03/vesennee-iskushenie-smes.jpg" alt="Мини‑картинка B1" />
+                  <div class="t"><strong>Весеннее искушение</strong><span>Ранункулюс, известный также как лютик, представляет собой многолетнее растение, которое привлекает внимание садоводов и ландшафтных дизайнеров благодаря своим ярким и эффектным цветам. Сорт Весеннее искушение смесь отличается компактными размерами: высота растения составляет всего 20-25 см.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2025/03/purpl-1.jpg" alt="Мини‑картинка B2" />
+                  <div class="t"><strong>Пурпл</strong><span>Ранункулюс Пурпл, также известный как Purple, представляет собой многолетнее растение из семейства лютиковых. Этот вид относится к азиатским садовым ранункулюсам и отличается своей привлекательной внешностью и яркими цветами.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2025/03/red-red.jpg" alt="Мини‑картинка B3" />
+                  <div class="t"><strong>Ред</strong><span>Ранункулюс Red, относящийся к виду азиатский (садовый), представляет собой красивое и эффектное растение, которое привлекает внимание своим ярким красным цветом.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2025/03/zheltyj-4.jpg" alt="Мини‑картинка B4" />
+                  <div class="t"><strong>Желтый</strong><span>Ранункулюс Желтый, также известный как Ranunculus Yellow или Джил Йелоу, представляет собой многолетнее растение из семейства лютиковых. Этот вид, относящийся к азиатским сортам садового лютика, отличается своей привлекательной внешностью и ярким цветом.</span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="big-card">
+              <div class="big-top">
+                <div class="meta">
+                  <h3>Георгины</h3>
+                  <p> Ассоциируются с новыми началами, поэтому их уместно дарить на юбилеи, свадьбы или в знак поддержки важных жизненных решений</p>
+                </div>
+                <figure class="big-image">
+                  <img src="https://i.pinimg.com/736x/bf/22/ba/bf22ba67a46de109d467110232256a03.jpg" alt="Заглушка изображения: секция 3, карточка C" />
+                </figure>
+              </div>
+              <div class="mini-grid">
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2022/03/akita.jpg" alt="Мини‑картинка C1" />
+                  <div class="t"><strong>Акита</strong><span>Японский сорт георгинов Акита – весьма сложный, но неприхотливый цветок. Его цветение обильное, пышное и длится вплоть до самых заморозков. Культура относится к многолетним видам, поэтому дачники так часто выбирают именно этот сорт.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2022/03/art-deko.jpg" alt="Мини‑картинка C2" />
+                  <div class="t"><strong>Арт Деко</strong><span>Георгины, относящиеся к сорту Арт Деко (Art Deco), относятся к группе кактусовых. Это очень красивые многолетние растения, которые отлично приспособлены к выращиванию в условиях горшков и контейнеров. Цветы часто применяют для оригинального декорирования бордюров..</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/07/arabian-misteri-3.jpg" alt="Мини‑картинка C3" />
+                  <div class="t"><strong>Арабиан Мистери</strong><span>Георгины Арабиан Мистери – это прекрасный выбор для создания красочных клумб или букетов благодаря своей яркой окраске и продолжительному цветению. С правильным уходом эти цветы будут радовать глаз своей красотой и привлекательностью на протяжении всего летнего сезона.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/08/bora-bora.jpg" alt="Мини‑картинка C4" />
+                  <div class="t"><strong>Бора бора</strong><span>Георгина Бора Бора, также известная под синонимом Bora Bora, относится к группе декоративных полукактусовых однолетних растений. Этот сорт прекрасно подходит для создания богатых цветочных клумб и ярких бордюров. Главной особенностью культуры является игольчатое соцветие, которое имеет шарообразную форму и достигает диаметра 15-20 см.</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4 -->
+      <section class="section s4" aria-label="Секция 4">
+        <div class="wrap">
+          <div class="section-title">
+            <h2>Секция 4</h2>
+          </div>
+
+          <div class="cards-3 appear">
+            <article class="big-card">
+              <div class="big-top">
+                <div class="meta">
+                  <h3>Гортензия</h3>
+                  <p>Гортензия популярна в современной флористике. Она выступает в роли основы пышного монобукета, составляет компанию розам и ранункулюсам, работает как необычный цветочный акцент в авторских композициях. </p>
+                </div>
+                <figure class="big-image">
+                  <img src="https://i.pinimg.com/736x/71/2c/c7/712cc75b817079ff0dbe8079e4d1c4d1.jpg" alt="Заглушка изображения: секция 4, карточка A" />
+                </figure>
+              </div>
+              <div class="mini-grid">
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/07/avelroz.jpg" alt="Мини‑картинка A1" />
+                  <div class="t"><strong>Авелроз</strong><span>Гортензия Авелроз, также известная как Авельроуз или Hydrangea serrata Avelroz, является одним из самых высокодекоративных сортов пильчатой гортензии</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/07/adria-blyu.jpg" alt="Мини‑картинка A2" />
+                  <div class="t"><strong>Адриа Блю</strong><span>Гортензия Адриа Блю подходит для одиночных и групповых посадок, а также для срезки. Красивый вид и высокая декоративность делают ее прекрасным выбором для создания ярких цветочных композиций в саду или на клумбе.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2021/11/aisha.jpg" alt="Мини‑картинка A3" />
+                  <div class="t"><strong>Аиша</strong><span>Гортензия Аиша (Ayesha) представляет собой влаголюбивое растение. Сорт отличают красивое цветение, отменные декоративные свойства.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/02/virle-2.jpg" alt="Мини‑картинка A4" />
+                  <div class="t"><strong>Вирле</strong><span>Гортензия Вирле, также известная как Veerle или Вирл, является одним из самых высокодекоративных пильчатых сортов. Это очень компактный и плотный кустарник, который может достигать высоты от 100 до 120 см и имеет диаметр около 150 см.</span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="big-card">
+              <div class="big-top">
+                <div class="meta">
+                  <h3>Орхидея</h3>
+                  <p>На языке цветов орхидея олицетворяет великолепие, роскошь, утончённость и страсть. Каждый оттенок орхидеи несёт свой уникальный смысл. </p>
+                </div>
+                <figure class="big-image">
+                  <img src="https://i.pinimg.com/736x/a0/01/9c/a0019c41b986ebc5add615e7b1b65115.jpg" alt="Заглушка изображения: секция 4, карточка B" />
+                </figure>
+              </div>
+              <div class="mini-grid">
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/03/azian-korall.jpg" alt="Мини‑картинка B1" />
+                  <div class="t"><strong>Азиан Коралл</strong><span>Орхидея Азиан Коралл – это гибрид, выведенный в Нидерландах. Культура относится к травянистым растениям и имеет кустовую жизненную форму. Высота цветоноса достигает 60 см, что является довольно высоким показателем для орхидей.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/04/apollon.jpg" alt="Мини‑картинка B2" />
+                  <div class="t"><strong>Дендробиум Аполлон</strong><span>Орхидея считается одним из самых красивых цветков, которые есть на нашей планете. Одним из ее красивых сортов является Аполлон. Разновидность соответствует своему названию.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/03/blek-angel.jpg" alt="Мини‑картинка B3" />
+                  <div class="t"><strong>Блек Ангел</strong><span>Орхидея Блэк Ангел, также известная как Черный ангел, является карликовым сортом. Высота цветоноса составляет от 18 до 25 см, а количество цветов на нем может быть довольно большим благодаря мультифлорной форме цветения. .</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/03/amabilis.jpg" alt="Мини‑картинка B4" />
+                  <div class="t"><strong>Амабилис</strong><span>Орхидея Амабилис является одним из самых красивых и популярных сортов. Обильное цветение, приятный аромат и неприхотливость в уходе делают ее отличным выбором для цветоводов.</span></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="big-card">
+              <div class="big-top">
+                <div class="meta">
+                  <h3>Каллы</h3>
+                  <p>Символ восхищения, уважения и элегантности.</p>
+                </div>
+                <figure class="big-image">
+                  <img src="https://i.pinimg.com/736x/68/70/8c/68708c99e2f5c23b5d849be173819459.jpg" alt="Заглушка изображения: секция 4, карточка C" />
+                </figure>
+              </div>
+              <div class="mini-grid">
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/06/kapitan-promis.jpg" alt="Мини‑картинка C1" />
+                  <div class="t"><strong>Капитан Промис</strong><span>Калла Капитан Промис – это прекрасное растение, которое порадует своими эффектными цветами и нежным ароматом. Данный сорт отличается невысокой морозостойкостью, однако при правильном уходе может быть выращен как в открытом грунте, так и в комнатных условиях. </span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/07/kantor-1.jpg" alt="Мини‑картинка C2" />
+                  <div class="t"><strong>Кантор</strong><span>Калла Кантор, также известная как Cantor, является многолетним растением семейства Ароидные. Этот сорт имеет крупные листья стреловидной формы, блестящие и восковые на ощупь. </span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/06/kapitan-fuego.jpg" alt="Мини‑картинка C3" />
+                  <div class="t"><strong>Фуэго</strong><span>Калла Капитан Фуэго – это прекрасное растение для создания ярких цветочных композиций или для выращивания на подоконниках и балконах. С ее помощью можно создавать настоящие оазисы красоты и уюта.</span></div>
+                </div>
+                <div class="mini">
+                  <img src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/12/remani-pink.jpg" alt="Мини‑картинка C4" />
+                  <div class="t"><strong>Пинк</strong><span>Калла Ремани Пинк, также известная как Calla (Zantedeschia) Rehmannii Pink, представляет собой быстрорастущее низкорослое растение высотой около 60 см. Это декоративное растение отличается крупными стреловидными листьями насыщенного сочно-зеленого цвета, которые придают ему особую привлекательность.</span></div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer-grid">
+        <div>
+          <h3>Контакты</h3>
+          <p>Почта: <a href="mailto:student@mail.com">student@mail.com</a></p>
+          <p>Телефон: <a href="tel:+79283571190">8 928 357 11 90</a></p>
+        </div>
+        <div class="footer-mark">© ♡ Учебный проект</div>
+      </div>
+    </footer>
+  </body>
+</html>
+
