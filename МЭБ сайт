@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Мой учебный сайт</title>
+
+<style>
+:root {
+  --text: #1a1a1a;
+  --muted: rgba(0, 0, 0, 0.65);
+  --card: rgba(255, 255, 255, 0.82);
+  --card-strong: rgba(255, 255, 255, 0.9);
+  --stroke: rgba(0, 0, 0, 0.08);
+  --shadow: 0 16px 50px rgba(0, 0, 0, 0.14);
+  --radius: 18px;
+  --radius-sm: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui;
+  color: var(--text);
+}
+
+/* HEADER */
+.header {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.75);
+  border-bottom: 1px solid var(--stroke);
+}
+
+.header__container {
+  max-width:1180px;
+  margin:0 auto;
+  padding:28px 18px;
+}
+
+.hero {
+  display:grid;
+  grid-template-columns:1.2fr 0.8fr;
+  gap:18px;
+  align-items:center;
+}
+
+.hero__title {
+  margin:0;
+  text-transform:uppercase;
+}
+
+.hero__text {
+  color:var(--muted);
+}
+
+.hero__badge {
+  justify-self:end;
+  padding:12px;
+  border-radius:999px;
+  border:1px solid var(--stroke);
+}
+
+/* SECTION */
+.section {
+  padding:26px 0;
+}
+
+.section__container {
+  max-width:1180px;
+  margin:0 auto;
+  padding:22px;
+}
+
+.section__title {
+  margin-bottom:14px;
+}
+
+/* COLORS */
+.section--s1 {
+  background: linear-gradient(180deg,#ffd7e4,#fff);
+}
+.section--s2 {
+  background: radial-gradient(#ff7fb3,#ff2b7d);
+}
+.section--s3 {
+  background: linear-gradient(180deg,#ff3b3b,#fff);
+}
+.section--s4 {
+  background: radial-gradient(#7a0028,#fff);
+}
+
+/* CARDS */
+.cards {
+  display:grid;
+  gap:16px;
+}
+
+.cards--layout-s1 {
+  grid-template-columns:1.35fr 0.85fr;
+}
+
+/* CARD */
+.card {
+  border-radius:var(--radius);
+  background:var(--card);
+  border:1px solid var(--stroke);
+  box-shadow:var(--shadow);
+}
+
+.card__top {
+  display:grid;
+  gap:12px;
+  padding:16px;
+}
+
+.card__meta {
+  display:grid;
+  gap:6px;
+}
+
+.card__title {
+  margin:0;
+}
+
+.card__text {
+  color:rgba(0,0,0,0.7);
+}
+
+.card__image img {
+  width:100%;
+}
+
+/* MINI */
+.card__mini-grid {
+  display:grid;
+  gap:12px;
+  padding:16px;
+}
+
+.mini-card {
+  display:grid;
+  grid-template-columns:88px 1fr;
+  gap:10px;
+  padding:12px;
+  border-radius:var(--radius-sm);
+  background:white;
+}
+
+.mini-card__image {
+  width:88px;
+  height:64px;
+  object-fit:cover;
+}
+
+.mini-card__content {
+  display:grid;
+  gap:4px;
+}
+
+.mini-card__title {
+  font-size:13px;
+}
+
+.mini-card__text {
+  font-size:12px;
+  color:rgba(0,0,0,0.65);
+}
+
+/* FOOTER */
+.footer {
+  background:#0f0f12;
+  color:white;
+}
+
+.footer__container {
+  max-width:1180px;
+  margin:auto;
+  padding:20px;
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="header__container hero">
+    
+    <div class="hero__content">
+      <h1 class="hero__title">Мой учебный сайт</h1>
+      <p class="hero__text">Пример страницы на чистом HTML.</p>
+    </div>
+
+    <div class="hero__badge">
+      HTML • Header • 4 секции • 3 Карточки • Footer
+    </div>
+
+  </div>
+</header>
+
+<main>
+
+<!-- SECTION 1 -->
+<section class="section section--s1">
+  <div class="section__container">
+
+    <h2 class="section__title">Секция 1</h2>
+
+    <div class="cards cards--layout-s1">
+
+      <!-- CARD 1 -->
+      <article class="card">
+        <div class="card__top">
+          
+          <div class="card__meta">
+            <h3 class="card__title">Пионы</h3>
+            <p class="card__text">
+              Пион известен как «король цветов». Олицетворяет богатство...
+            </p>
+          </div>
+
+          <div class="card__image">
+            <img src="https://i.pinimg.com/736x/b8/ad/1d/b8ad1d4d898ca521351ffddd2b45f885.jpg">
+          </div>
+
+        </div>
+
+        <div class="card__mini-grid">
+
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2022/05/alerti.jpg">
+            <div class="mini-card__content">
+              <strong class="mini-card__title">Алерти</strong>
+              <span class="mini-card__text">Одним из самых красивых...</span>
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/04/bessi.jpg">
+            <div class="mini-card__content">
+              <strong class="mini-card__title">Бесси</strong>
+              <span class="mini-card__text">Выращивание пионов...</span>
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2022/05/armani.jpg">
+            <div class="mini-card__content">
+              <strong class="mini-card__title">Армани</strong>
+              <span class="mini-card__text">Роскошный сорт...</span>
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2022/03/balerina.jpg">
+            <div class="mini-card__content">
+              <strong class="mini-card__title">Балерина</strong>
+              <span class="mini-card__text">Пышное цветение...</span>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- CARD 2 -->
+      <article class="card">
+        <div class="card__top">
+          <div class="card__meta">
+            <h3 class="card__title">Лилии</h3>
+            <p class="card__text">Изящный цветок...</p>
+          </div>
+
+          <div class="card__image">
+            <img src="https://i.pinimg.com/originals/b7/c9/f7/b7c9f79c9d114695d5244111d9864bcc.jpg">
+          </div>
+        </div>
+
+        <div class="card__mini-grid">
+
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/02/aventino.jpg">
+            <div class="mini-card__content">
+              <strong>Авентино</strong>
+              <span>ОТ-гибрид...</span>
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2024/05/alma-ata-3.jpg">
+            <div class="mini-card__content">
+              <strong>Алма-Ата</strong>
+              <span>Восточный гибрид...</span>
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2021/12/arena.jpg">
+            <div class="mini-card__content">
+              <strong>Арена</strong>
+              <span>Популярный сорт...</span>
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2021/11/beverli-drim.jpg">
+            <div class="mini-card__content">
+              <strong>Беверли Дрим</strong>
+              <span>Простой уход...</span>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+      <!-- CARD 3 -->
+      <article class="card">
+        <div class="card__top">
+          <div class="card__meta">
+            <h3 class="card__title">Гипсофилы</h3>
+            <p class="card__text">Символ нежности...</p>
+          </div>
+
+          <div class="card__image">
+            <img src="https://i.pinimg.com/736x/3c/04/c8/3c04c8767f6bdf4e509b3623a2cb95bd.jpg">
+          </div>
+        </div>
+
+        <div class="card__mini-grid">
+
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2025/05/rozovaya-dymka.jpg">
+            <div class="mini-card__content">
+              <strong>Розовая дымка</strong>
+              <span>Многолетник...</span>
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2025/05/tihookeanskaya-rozovaya.jpg">
+            <div class="mini-card__content">
+              <strong>Тихоокеанская</strong>
+              <span>Красивое растение...</span>
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2025/05/panikulyata-rouz.jpg">
+            <div class="mini-card__content">
+              <strong>Паникулята</strong>
+              <span>Ветвистый куст...</span>
+            </div>
+          </div>
+
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2025/05/flamingo.jpg">
+            <div class="mini-card__content">
+              <strong>Фламинго</strong>
+              <span>Изящные цветы...</span>
+            </div>
+          </div>
+
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+<!-- SECTION 2 -->
+<section class="section section--s2">
+  <div class="section__container">
+
+    <h2 class="section__title">Секция 2</h2>
+
+    <div class="cards cards--layout-s2">
+
+      <!-- CARD 1 -->
+      <article class="card">
+        <div class="card__top">
+          <div class="card__meta">
+            <h3 class="card__title">Тюльпаны</h3>
+            <p class="card__text">Весенние цветы с яркими красками, символизируют любовь и счастье.</p>
+          </div>
+          <div class="card__image">
+            <img src="https://i.pinimg.com/originals/9c/5e/3a/9c5e3aa6f29a23.jpg">
+          </div>
+        </div>
+
+        <div class="card__mini-grid">
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/03/red-tulip.jpg">
+            <div class="mini-card__content">
+              <strong>Красный</strong>
+              <span>Яркий и насыщенный цвет.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/03/yellow-tulip.jpg">
+            <div class="mini-card__content">
+              <strong>Жёлтый</strong>
+              <span>Символ радости и веселья.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/03/purple-tulip.jpg">
+            <div class="mini-card__content">
+              <strong>Фиолетовый</strong>
+              <span>Тайна и благородство.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/03/white-tulip.jpg">
+            <div class="mini-card__content">
+              <strong>Белый</strong>
+              <span>Чистота и невинность.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 2 -->
+      <article class="card">
+        <div class="card__top">
+          <div class="card__meta">
+            <h3 class="card__title">Гладиолусы</h3>
+            <p class="card__text">Высокие цветы с длинными стеблями, символизируют силу и характер.</p>
+          </div>
+          <div class="card__image">
+            <img src="https://i.pinimg.com/originals/34/7d/0f/347d0f6d7466f4.jpg">
+          </div>
+        </div>
+
+        <div class="card__mini-grid">
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/04/red-glad.jpg">
+            <div class="mini-card__content">
+              <strong>Красный</strong>
+              <span>Энергия и страсть.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/04/pink-glad.jpg">
+            <div class="mini-card__content">
+              <strong>Розовый</strong>
+              <span>Романтика и нежность.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/04/white-glad.jpg">
+            <div class="mini-card__content">
+              <strong>Белый</strong>
+              <span>Чистота и свежесть.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/04/yellow-glad.jpg">
+            <div class="mini-card__content">
+              <strong>Жёлтый</strong>
+              <span>Свет и радость.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3 -->
+<section class="section section--s3">
+  <div class="section__container">
+
+    <h2 class="section__title">Секция 3</h2>
+
+    <div class="cards cards--layout-s3">
+
+      <!-- CARD 1 -->
+      <article class="card">
+        <div class="card__top">
+          <div class="card__meta">
+            <h3 class="card__title">Розы</h3>
+            <p class="card__text">Королева цветов, символ любви и страсти.</p>
+          </div>
+          <div class="card__image">
+            <img src="https://i.pinimg.com/originals/8f/3b/1c/8f3b1c3a6f4f2.jpg">
+          </div>
+        </div>
+
+        <div class="card__mini-grid">
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/05/red-rose.jpg">
+            <div class="mini-card__content">
+              <strong>Красная</strong>
+              <span>Страсть и любовь.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/05/pink-rose.jpg">
+            <div class="mini-card__content">
+              <strong>Розовая</strong>
+              <span>Нежность и романтика.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/05/white-rose.jpg">
+            <div class="mini-card__content">
+              <strong>Белая</strong>
+              <span>Чистота и искренность.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/05/yellow-rose.jpg">
+            <div class="mini-card__content">
+              <strong>Жёлтая</strong>
+              <span>Дружба и радость.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 2 -->
+      <article class="card">
+        <div class="card__top">
+          <div class="card__meta">
+            <h3 class="card__title">Ранункулюсы</h3>
+            <p class="card__text">Яркие пышные цветы, символ очарования и счастья.</p>
+          </div>
+          <div class="card__image">
+            <img src="https://i.pinimg.com/originals/7c/2d/6b/7c2d6b7b6f8a4.jpg">
+          </div>
+        </div>
+
+        <div class="card__mini-grid">
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/05/red-ran.jpg">
+            <div class="mini-card__content">
+              <strong>Красный</strong>
+              <span>Энергия и страсть.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/05/pink-ran.jpg">
+            <div class="mini-card__content">
+              <strong>Розовый</strong>
+              <span>Нежность и утонченность.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/05/yellow-ran.jpg">
+            <div class="mini-card__content">
+              <strong>Жёлтый</strong>
+              <span>Свет и радость.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/05/white-ran.jpg">
+            <div class="mini-card__content">
+              <strong>Белый</strong>
+              <span>Чистота и свежесть.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+<!-- SECTION 4 -->
+<section class="section section--s4">
+  <div class="section__container">
+
+    <h2 class="section__title">Секция 4</h2>
+
+    <div class="cards cards--layout-s4">
+
+      <!-- CARD 1 -->
+      <article class="card">
+        <div class="card__top">
+          <div class="card__meta">
+            <h3 class="card__title">Пионы</h3>
+            <p class="card__text">Роскошные цветы с ароматом счастья, символ богатства и благополучия.</p>
+          </div>
+          <div class="card__image">
+            <img src="https://i.pinimg.com/originals/a3/5b/9e/a35b9e2c8c4a1.jpg">
+          </div>
+        </div>
+
+        <div class="card__mini-grid">
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/06/red-peony.jpg">
+            <div class="mini-card__content">
+              <strong>Красный</strong>
+              <span>Сила и страсть.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/06/pink-peony.jpg">
+            <div class="mini-card__content">
+              <strong>Розовый</strong>
+              <span>Нежность и романтика.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/06/white-peony.jpg">
+            <div class="mini-card__content">
+              <strong>Белый</strong>
+              <span>Чистота и свежесть.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/06/yellow-peony.jpg">
+            <div class="mini-card__content">
+              <strong>Жёлтый</strong>
+              <span>Радость и свет.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 2 -->
+      <article class="card">
+        <div class="card__top">
+          <div class="card__meta">
+            <h3 class="card__title">Лилии</h3>
+            <p class="card__text">Элегантные цветы, символ чистоты, благородства и грации.</p>
+          </div>
+          <div class="card__image">
+            <img src="https://i.pinimg.com/originals/56/7f/3a/567f3a0f6c8a4.jpg">
+          </div>
+        </div>
+
+        <div class="card__mini-grid">
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/06/red-lily.jpg">
+            <div class="mini-card__content">
+              <strong>Красная</strong>
+              <span>Энергия и страсть.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/06/pink-lily.jpg">
+            <div class="mini-card__content">
+              <strong>Розовая</strong>
+              <span>Нежность и грация.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/06/white-lily.jpg">
+            <div class="mini-card__content">
+              <strong>Белая</strong>
+              <span>Чистота и благородство.</span>
+            </div>
+          </div>
+          <div class="mini-card">
+            <img class="mini-card__image" src="https://stroy-podskazka.ru/images/knowledge/cropped/400-400/2023/06/yellow-lily.jpg">
+            <div class="mini-card__content">
+              <strong>Жёлтая</strong>
+              <span>Свет и радость.</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__container">
+    <p class="footer__text">© 2026 Цветочный сайт. Все права защищены.</p>
+    <nav class="footer__nav">
+      <a class="footer__link" href="#section1">Секция 1</a>
+      <a class="footer__link" href="#section2">Секция 2</a>
+      <a class="footer__link" href="#section3">Секция 3</a>
+      <a class="footer__link" href="#section4">Секция 4</a>
+    </nav>
+  </div>
+</footer>
