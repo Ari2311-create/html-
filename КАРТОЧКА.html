@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Мой учебный сайт</title>
+
+<style>
+  body.dark {
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.7);
+  --card: rgba(30, 30, 30, 0.85);
+  --card-strong: rgba(40, 40, 40, 0.9);
+  --stroke: rgba(255, 255, 255, 0.1);
+  --shadow: 0 16px 50px rgba(0, 0, 0, 0.5);
+  background: #0f0f12;
+}
+:root {
+  --text: #1a1a1a;
+  --muted: rgba(0, 0, 0, 0.65);
+  --card: rgba(255, 255, 255, 0.82);
+  --card-strong: rgba(255, 255, 255, 0.9);
+  --stroke: rgba(0, 0, 0, 0.08);
+  --shadow: 0 16px 50px rgba(0, 0, 0, 0.14);
+  --radius: 18px;
+  --radius-sm: 14px;
+
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 1rem; /* 16px */
+  --space-4: 1.5rem; /* 24px */
+  --space-5: 2rem; /* 32px */
+
+
+   /* PRIMARY (розовый/основной) */
+   --primary-100: #ffe6f0;
+  --primary-200: #ffb3d1;
+  --primary-300: #ff80b3;
+  --primary-400: #ff4d94;
+  --primary-500: #ff1a75;
+  --primary-600: #e6005c;
+  --primary-700: #b30047;
+  --primary-800: #800033;
+  --primary-900: #4d001f;
+  --primary-1000:#2b0011;
+
+  /* SECONDARY (дополнительный) */
+  --secondary-100: #e6f7ff;
+  --secondary-200: #b3e5ff;
+  --secondary-300: #80d4ff;
+  --secondary-400: #4dc2ff;
+  --secondary-500: #1ab0ff;
+  --secondary-600: #008fe6;
+  --secondary-700: #006db3;
+  --secondary-800: #004a80;
+  --secondary-900: #00284d;
+  --secondary-1000:#001522;
+
+  /* WARNING */
+  --warning-100: #fff7e6;
+  --warning-200: #ffe6b3;
+  --warning-300: #ffd480;
+  --warning-400: #ffc24d;
+  --warning-500: #ffb01a;
+  --warning-600: #e69500;
+  --warning-700: #b37400;
+  --warning-800: #805300;
+  --warning-900: #4d3200;
+  --warning-1000:#2b1a00;
+
+  /* ERROR */
+  --error-100: #ffe6e6;
+  --error-200: #ffb3b3;
+  --error-300: #ff8080;
+  --error-400: #ff4d4d;
+  --error-500: #ff1a1a;
+  --error-600: #e60000;
+  --error-700: #b30000;
+  --error-800: #800000;
+  --error-900: #4d0000;
+  --error-1000:#2b0000;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui;
+  color: var(--text);
+  background: #ffffff;
+}
+
+/* HEADER */
+.header {
+  position: sticky;
+  top: 0;
+  background: rgba(255,255,255,0.75);
+  border-bottom: 1px solid var(--stroke);
+}
+
+.header__container {
+  max-width:73.75rem; /* 1180px */
+  padding:1.75rem 1.125rem; /* 28px 18px */
+}
+
+.hero {
+  display:grid;
+  grid-template-columns:1.2fr 0.8fr;
+  gap:18px;
+  align-items:center;
+}
+
+.hero__title {
+  margin:0;
+  text-transform:uppercase;
+}
+
+.hero__text {
+  color:var(--muted);
+}
+
+.hero__badge {
+  justify-self:end;
+  padding:12px;
+  border-radius:999px;
+  border:1px solid var(--stroke);
+}
+
+/* SECTION */
+.section {
+  padding:26px 0;
+  background-clip: padding-box;
+}
+
+.section__container {
+  max-width:1180px;
+  margin:0 auto;
+  padding:22px;
+}
+
+.section__title {
+  margin-bottom:14px;
+}
+
+/* COLORS */
+.section--s1 {
+  background: var(--primary-100);
+}
+.section--s2 {
+  background: var(--secondary-200);
+}
+.section--s3 {
+  background: var(--warning-200);
+}
+.section--s4 {
+  background: var(--error-100)
+}
+
+/* CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+}
+
+.cards--layout-s1 {
+  grid-template-columns:1.35fr 0.85fr;
+}
+
+/* CARD */
+.card {
+  border-radius:var(--radius);
+  background:var(--card);
+  border:1px solid var(--stroke);
+  box-shadow:var(--shadow);
+}
+
+.card__top {
+  display:grid;
+  gap:12px;
+  padding: var(--space-3); /* 16px */
+}
+
+.card__meta {
+  display:grid;
+  gap:6px;
+}
+
+.card__title {
+  margin:0;
+}
+
+.card__text {
+  color:rgba(0,0,0,0.7);
+}
+
+.card__image img {
+  width:100%;
+}
+
+/* MINI */
+.card__mini-grid {
+  display:grid;
+  gap: var(--space-2);
+  padding:1rem;
+}
+
+.mini-card {
+  display:grid;
+  grid-template-columns:88px 1fr;
+  gap:10px;
+  padding: var(--space-2);
+  border-radius:var(--radius-sm);
+  background:white;
+}
+
+.mini-card__image {
+  width:88px;
+  height:64px;
+  object-fit:cover;
+}
+
+.mini-card__content {
+  display:grid;
+  gap:4px;
+}
+
+.mini-card__title {
+  font-size:13px;
+}
+
+.mini-card__text {
+  font-size:12px;
+  color:rgba(0,0,0,0.65);
+}
+
+/* FOOTER */
+.footer {
+  background:#0f0f12;
+  color:white;
+}
+
+.footer__container {
+  max-width:1180px;
+  margin:auto;
+  padding:20px;
+}
+.p-1 { padding: var(--space-1);}
+.p-2 { padding: var(--space-2);}
+.p-3 { padding: var(--space-3);}
+.p-4 { padding: var(--space-4);}
+.p-5 { padding: var(--space-5);}
+
+.gap-1 { gap: var(--space-1);}
+.gap-2 { gap: var(--space-2);}
+.gap-3 { gap: var(--space-3);}
+.gap-4 { gap: var(--space-4);}
+.gap-5 { gap: var(--space-5);}
+
+[dir="rtl"] {
+  direction: rtl;
+}
+
+/* ===== ADAPTIVE ===== */
+
+/* планшеты */
+@media (max-width: 756px) {
+
+.hero {
+  grid-template-columns: 1fr;
+  text-align: center;
+}
+
+.hero__badge {
+  justify-self: center;
+}
+
+.cards {
+  grid-template-columns: 1fr 1fr;
+}
+}
+
+/*  телефоны */
+@media (max-width: 550px) {
+
+.cards {
+  grid-template-columns: 1fr;
+}
+
+.section__container {
+  padding: var(--space-3);
+}
+
+.header__container {
+  padding: var(--space-3);
+}
+
+.hero__title {
+  font-size: 1.2rem;
+}
+}
+
+/*  большие экраны */
+@media (min-width: 1200px) {
+
+.cards {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+}
+
+/* INPUT */
+#searchInput {
+  margin: var(--space-2);
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--stroke);
+}
+
+</style>
+</head>
+<body>
+
+<header class="header">
+  <button id="themeToggle">Переключить тему</button>
+  <button id="dirToggle">Сменить направление текста</button>
+  <button id="langToggle">Сменить язык</button>
+
+  <input id="searchInput" placeholder="Поиск..." />
+
+  <div class="header__container hero">
+    
+    <div class="hero__content">
+      <h1 class="hero__title">Мой учебный сайт</h1>
+      <p class="hero__text">Пример страницы на чистом HTML.</p>
+    </div>
+
+    <div class="hero__badge">
+      HTML • Header • 4 секции • 3 Карточки • Footer
+    </div>
+
+  </div>
+</header>
+
+<main id="app"></main>
+
+
+
+
+
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__container">
+    <p class="footer__text">© 2026 Цветочный сайт. Все права защищены.</p>
+    <nav class="footer__nav">
+      <a class="footer__link" href="#section1">Секция 1</a>
+      <a class="footer__link" href="#section2">Секция 2</a>
+      <a class="footer__link" href="#section3">Секция 3</a>
+      <a class="footer__link" href="#section4">Секция 4</a>
+    </nav>
+  </div>
+</footer>
+<script>
+ const mockData = {
+  sections: [
+    {
+      id: "section1",
+      cards: [
+        { id: "pion", image: "https://i.pinimg.com/736x/b8/ad/1d/b8ad1d4d898ca521351ffddd2b45f885.jpg" },
+        { id: "lily", image: "https://i.pinimg.com/originals/b7/c9/f7/b7c9f79c9d114695d5244111d9864bcc.jpg" },
+        { id: "tulip", image: "https://i.pinimg.com/736x/f1/7e/e2/f17ee271cc476c861173a8269531fe3d.jpg" }
+      ]
+    },
+    {
+      id: "section2",
+      cards: [
+        { id: "rose", image: "https://i.pinimg.com/736x/9e/1c/af/9e1cafedf37f01c4aa2d93f5d2346215.jpg" },
+        { id: "gladiolus", image: "https://i.pinimg.com/736x/3c/fe/3e/3cfe3e4c72800d7d376c0c04babf906e.jpg" },
+        { id: "ranunculus", image: "https://i.pinimg.com/736x/47/3e/ad/473ead9a9f5dbaac6ea7e56bc6e6a5ba.jpg" }
+      ]
+    },
+    {
+      id: "section3",
+      cards: [
+        { id: "gypsophila", image: "https://i.pinimg.com/736x/3c/04/c8/3c04c8767f6bdf4e509b3623a2cb95bd.jpg" },
+        { id: "pinkPeony", image: "https://i.pinimg.com/736x/d0/4d/d6/d04dd63697888acdb9537e0a72411eda.jpg" },
+        { id: "whiteLily", image: "https://i.pinimg.com/736x/e6/03/d8/e603d82e52bebcef808bcb1d0fd38d7b.jpg" }
+      ]
+    }
+  ]
+};
+
+const translations = {
+  ru: {
+    title: "Мой сайт",
+    text: "Пример сайта",
+    badge: "Учебный проект",
+    sections: { section1: "Секция 1", section2: "Секция 2", section3: "Секция 3" },
+    cards: {
+      pion: { title: "Пионы", text: "Король цветов" },
+      lily: { title: "Лилии", text: "Изящный цветок" },
+      tulip: { title: "Тюльпаны", text: "Весенние цветы" },
+      rose: { title: "Розы", text: "Символ любви" },
+      gladiolus: { title: "Гладиолусы", text: "Сила и характер" },
+      ranunculus: { title: "Ранункулюсы", text: "Очарование" },
+      gypsophila: { title: "Гипсофилы", text: "Нежность" },
+      pinkPeony: { title: "Розовые пионы", text: "Нежные цветы" },
+      whiteLily: { title: "Белые лилии", text: "Чистота" }
+    }
+  },
+
+  en: { title: "My site", text: "Example website", badge: "Learning project",
+    sections: { section1: "Section 1", section2: "Section 2", section3: "Section 3" },
+    cards: {
+      pion: { title: "Peonies", text: "King of flowers" },
+      lily: { title: "Lilies", text: "Elegant flower" },
+      tulip: { title: "Tulips", text: "Spring flowers" },
+      rose: { title: "Roses", text: "Symbol of love" },
+      gladiolus: { title: "Gladiolus", text: "Strength" },
+      ranunculus: { title: "Ranunculus", text: "Charm" },
+      gypsophila: { title: "Gypsophila", text: "Tenderness" },
+      pinkPeony: { title: "Pink peonies", text: "Soft flowers" },
+      whiteLily: { title: "White lilies", text: "Purity" }
+    }
+  },
+
+  fr: { title: "Mon site", text: "Exemple", badge: "Projet",
+    sections: { section1: "Section 1", section2: "Section 2", section3: "Section 3" },
+    cards: {} },
+
+  de: { title: "Meine Seite", text: "Beispiel", badge: "Projekt",
+    sections: { section1: "Abschnitt 1", section2: "Abschnitt 2", section3: "Abschnitt 3" },
+    cards: {} },
+
+  es: { title: "Mi sitio", text: "Ejemplo", badge: "Proyecto",
+    sections: { section1: "Sección 1", section2: "Sección 2", section3: "Sección 3" },
+    cards: {} },
+
+  it: { title: "Il mio sito", text: "Esempio", badge: "Progetto",
+    sections: { section1: "Sezione 1", section2: "Sezione 2", section3: "Sezione 3" },
+    cards: {} },
+
+  pt: { title: "Meu site", text: "Exemplo", badge: "Projeto",
+    sections: { section1: "Seção 1", section2: "Seção 2", section3: "Seção 3" },
+    cards: {} },
+
+  nl: { title: "Mijn site", text: "Voorbeeld", badge: "Project",
+    sections: { section1: "Sectie 1", section2: "Sectie 2", section3: "Sectie 3" },
+    cards: {} },
+
+  pl: { title: "Moja strona", text: "Przykład", badge: "Projekt",
+    sections: { section1: "Sekcja 1", section2: "Sekcja 2", section3: "Sekcja 3" },
+    cards: {} },
+
+  tr: { title: "Sitem", text: "Örnek", badge: "Proje",
+    sections: { section1: "Bölüm 1", section2: "Bölüm 2", section3: "Bölüm 3" },
+    cards: {} },
+
+  zh: { title: "我的网站", text: "示例", badge: "项目",
+    sections: { section1: "部分 1", section2: "部分 2", section3: "部分 3" },
+    cards: {} },
+
+  ja: { title: "私のサイト", text: "例", badge: "プロジェクト",
+    sections: { section1: "セクション1", section2: "セクション2", section3: "セクション3" },
+    cards: {} },
+
+  ko: { title: "내 사이트", text: "예시", badge: "프로젝트",
+    sections: { section1: "섹션1", section2: "섹션2", section3: "섹션3" },
+    cards: {} },
+
+  ar: { title: "موقعي", text: "مثال", badge: "مشروع",
+    sections: { section1: "القسم 1", section2: "القسم 2", section3: "القسم 3" },
+    cards: {} },
+
+  hi: { title: "मेरी साइट", text: "उदाहरण", badge: "प्रोजेक्ट",
+    sections: { section1: "सेक्शन 1", section2: "सेक्शन 2", section3: "सेक्शन 3" },
+    cards: {} }
+};
+
+  </script>
+  
+  <script>
+  const app = document.getElementById("app");
+
+  let currentLang = "ru";
+
+  
+  function render() {
+  app.innerHTML = "";
+
+  const t = translations[currentLang];
+
+  const searchInput = document.getElementById("searchInput");
+
+  if (searchInput) {
+    searchInput.placeholder =
+    currentLang === "ru" ? "Поиск..." : "Search...";
+  }
+
+  document.querySelector(".hero__title").textContent = t.title;
+  document.querySelector(".hero__text").textContent = t.text;
+  document.querySelector(".hero__badge").textContent = t.badge;
+
+  const sectionColors = [
+    "section--s1",
+    "section--s2",
+    "section--s3"
+  ];
+
+  mockData.sections.forEach((section, index) => {
+
+    const sectionEl = document.createElement("section");
+    sectionEl.className = "section " + (sectionColors[index] || "");
+
+    const container = document.createElement("div");
+    container.className = "section__container";
+
+    const title = document.createElement("h2");
+    title.className = "section__title";
+    title.textContent = t.sections[section.id];
+    const cardsWrapper = document.createElement("div");
+    cardsWrapper.className = "cards";
+
+    section.cards.forEach(card => {
+
+      const cardEl = document.createElement("div");
+      cardEl.className = "card";
+
+      cardEl.innerHTML = `
+        <div class="card__top">
+          <div class="card__meta">
+            <h3 class="card__title">${t.cards[card.id]?.title || card.id}</h3>
+            <p class="card__text">${t.cards[card.id]?.text || ""}</p>
+          </div>
+          <div class="card__image">
+            <img src="${card.image}">
+          </div>
+        </div>
+      `;
+
+      cardsWrapper.appendChild(cardEl);
+    });
+
+    container.appendChild(title);
+    container.appendChild(cardsWrapper);
+    sectionEl.appendChild(container);
+    app.appendChild(sectionEl);
+  });
+}
+
+render();
+
+
+  
+  
+  </script>
+  <script>
+    const btn = document.getElementById("themeToggle");
+    
+    btn.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+    });
+    </script>
+
+
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        const dirBth = document.getElementById("dirToggle");
+        dirBth.addEventListener("click", () => {
+          if (document.documentElement.dir === "rtl") {
+            document.documentElement.dir = "ltr";
+          } else {
+            document.documentElement.dir = "rtl";
+          }
+        });
+      });
+    </script>
+
+    <script>
+      const langBth = document.getElementById("langToggle");
+      const languages = [
+        "ru", "en", "fr", "de", "es", "it", "pt", "nl", "pl", "tr", "zh", "ja", "ko", "ar", "hi"
+      ]
+      let langIndex = 0;
+
+      langBth.addEventListener("click", () => {
+        langIndex = (langIndex + 1) % languages.length;
+        currentLang = languages[langIndex];
+
+        document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+
+        render();
+      });
+    </script>
